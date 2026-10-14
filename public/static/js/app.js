@@ -13,7 +13,7 @@ window.App = {
       this.categories = metadata.categories || [];
       this.neighborhoods = metadata.neighborhoods || [];
       this.populateSelects();
-      const auth = await Api.get("/api/auth/me");
+      const auth = await Api.getAllowUnauthenticated("/api/auth/me");
       this.currentUser = auth.user || null;
       this.renderUser();
       await Promise.all([this.loadSkills(), this.loadJobs()]);
