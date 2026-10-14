@@ -43,19 +43,11 @@
     </ul>
 
     <div class="nav-auth">
-      <!-- Quick Demo Account Switcher -->
-      <div class="demo-switcher" title="Instantly switch demo accounts to test workflows">
-        <span>👤 Account:</span>
-        <select onchange="App.switchDemoUser(this.value)">
-          <option value="rajesh.sharma@example.com">Rajesh Sharma (Electrician - Provider)</option>
-          <option value="priya.deshmukh@example.com">Priya Deshmukh (Tutor - Provider)</option>
-          <option value="sneha.patil@example.com">Sneha Patil (Tech & Dual Role)</option>
-          <option value="vikas.bawankar@example.com">Vikas Bawankar (Requester)</option>
-          <option value="admin@tgpcet.edu">Yash Jadhav (Admin Lead)</option>
-        </select>
-      </div>
-
       <div id="nav-user-profile"></div>
+      <div id="nav-auth-actions">
+        <button class="btn btn-outline btn-sm" type="button" onclick="App.openAuth('login')">Log in</button>
+        <button class="btn btn-primary btn-sm" type="button" onclick="App.openAuth('register')">Join</button>
+      </div>
     </div>
   </nav>
 
@@ -490,6 +482,38 @@
         <a id="report-modal-download-csv" href="#" class="btn btn-secondary" style="background:#e2e8f0; color:var(--text-main);">Download CSV</a>
         <a id="report-modal-download-pdf" href="#" class="btn btn-primary">Download Official PDF</a>
       </div>
+    </div>
+  </div>
+
+  <div id="auth-modal" class="modal-backdrop">
+    <div class="modal-window" style="max-width:520px;">
+      <div class="modal-header">
+        <h3 id="auth-modal-title" style="font-size:1.2rem; font-weight:700;">Join the community</h3>
+        <button class="close-btn" type="button" onclick="App.closeModal('auth-modal')">&times;</button>
+      </div>
+      <form id="register-form" onsubmit="App.handleRegister(event)">
+        <div class="modal-body" style="display:flex; flex-direction:column; gap:12px;">
+          <div class="input-group"><label>Name</label><input class="form-control" name="name" autocomplete="name" required></div>
+          <div class="input-group"><label>Email</label><input class="form-control" type="email" name="email" autocomplete="email" required></div>
+          <div class="input-group"><label>Password</label><input class="form-control" type="password" name="password" autocomplete="new-password" minlength="8" required></div>
+          <div class="input-group"><label>Account type</label><select class="form-control" name="role"><option value="both">Offer skills and request help</option><option value="provider">Offer skills</option><option value="requester">Request help</option></select></div>
+          <div class="input-group"><label>Neighborhood</label><select class="form-control neighborhood-select" name="neighborhood" required></select></div>
+        </div>
+        <div class="modal-footer" style="justify-content:space-between;">
+          <button class="btn btn-outline" type="button" onclick="App.setAuthMode('login')">Already a member? Log in</button>
+          <button class="btn btn-primary" type="submit">Create account</button>
+        </div>
+      </form>
+      <form id="login-form" onsubmit="App.handleLogin(event)" style="display:none;">
+        <div class="modal-body" style="display:flex; flex-direction:column; gap:12px;">
+          <div class="input-group"><label>Email</label><input class="form-control" type="email" name="email" autocomplete="email" required></div>
+          <div class="input-group"><label>Password</label><input class="form-control" type="password" name="password" autocomplete="current-password" required></div>
+        </div>
+        <div class="modal-footer" style="justify-content:space-between;">
+          <button class="btn btn-outline" type="button" onclick="App.setAuthMode('register')">New here? Join</button>
+          <button class="btn btn-primary" type="submit">Log in</button>
+        </div>
+      </form>
     </div>
   </div>
 
