@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+platform.db
+platform.db-shm
+platform.db-wal
+.env
+.venv/
+venv/
