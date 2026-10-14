@@ -8,7 +8,10 @@ import sqlite3
 from contextlib import contextmanager
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "platform.db")
+DB_PATH = os.environ.get(
+    "DATABASE_PATH",
+    "/tmp/platform.db" if os.environ.get("VERCEL") else os.path.join(BASE_DIR, "platform.db"),
+)
 
 
 def get_db_connection():
